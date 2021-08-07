@@ -1,0 +1,53 @@
+﻿@page "/alltrainees"
+
+<h3>Trainee List</h3>
+
+
+@if (Trainees != null)
+{
+
+    <a href="@($"traineeinsert/")" class="btn btn-primary"> Insert New Trainee </a>
+    <hr />
+    <table class="table table-responsive">
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>email</th>
+            <th>MobileNo</th>
+            <th>Birthdate</th>
+            <th>IsGraduated</th>
+            <th>Track Name</th>
+            <th></th>
+
+
+        </tr>
+        @foreach (var trainee in Trainees)
+        {
+            <tr>
+                <td>@trainee.ID</td>
+                <td>@trainee.Name</td>
+                <td>@trainee.Gender</td>
+                <td>@trainee.email</td>
+                <td>@trainee.MobileNo</td>
+                <td>@trainee.Birthdate</td>
+                <td>@trainee.IsGraduated</td>
+                <td>@trainee.Track.Name</td>
+                <td>
+                    <a href="@($"traineedetails/{trainee.ID}")" class="btn btn-primary"> Details </a>
+                    <a href="@($"traineeedit/{trainee.ID}")" class="btn btn-secondary"> Update </a>
+                    <a href="@($"traineedelete/{trainee.ID}")" class="btn btn-danger"> Delete </a>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <div>wait....</div>
+}
+
+

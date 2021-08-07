@@ -1,0 +1,44 @@
+﻿@page "/trackedit/{TrackId:int}"
+
+@inject NavigationManager navigator
+
+
+@if ( Current != null)
+{
+
+    <h3 class="card-title">Details Of @Current.Name Track </h3>
+
+    <EditForm Model="@Current" OnValidSubmit="@HandleValidSubmit"
+              OnInvalidSubmit="@HandleInvalidSubmit">
+
+        <DataAnnotationsValidator />
+
+        <ValidationSummary></ValidationSummary>
+
+        @*<div class="form-group row">
+                <label class="col-form-label"> Track Id </label>
+                <label class="form-control">@Current.ID</label>
+            </div>*@
+
+        <div class="form-group row">
+            <label class="col-form-label"> Name </label>
+            <input @bind-value="@Current.Name" class="form-control">
+            <ValidationMessage For="@(() => Current.Name)" />
+
+        </div>
+
+        <div class="form-group row">
+            <label class="col-form-label"> Description </label>
+            <input @bind-value="@Current.Description" class="form-control">
+            <ValidationMessage For="@(() => Current.Description)" />
+
+        </div>
+        <button type="submit" class="btn btn-primary">Update Track</button>
+
+    </EditForm>
+}
+else
+{
+    <div> Please Wait...</div>
+}
+

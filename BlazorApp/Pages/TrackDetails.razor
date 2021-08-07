@@ -1,0 +1,74 @@
+﻿@page "/trackdetails/{TrackId:int}"
+
+@inject NavigationManager navigator
+
+@if (Current != null)
+{
+
+    <h3 class="card-title">Details Of @Current.Name Track </h3>
+
+    @*<div class="form-group row">
+        <label class="col-form-label"> Track Id </label>
+        <label class="form-control">@Current.ID</label>
+    </div>*@
+
+    <div class="form-group row">
+        <label class="col-form-label"> Name </label>
+        <label class="form-control">@Current.Name</label>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-form-label"> Description </label>
+        <label class="form-control">@Current.Description</label>
+    </div>
+
+    <div class="form-group row">
+
+        <a href="@($"alltracks/")" class="btn btn-primary"> Back To All Tracks </a>
+        <a href="@($"trackedit/{Current.ID}")" class="btn btn-secondary"> Update </a>
+        @if (Current.Trainees == null || Current.Trainees.Count == 0)
+        {
+            <a href="@($"trackdelete/{Current.ID}")" class="btn btn-danger"> Delete </a>
+        }
+
+    </div>
+
+    @if (Trainees != null)
+    {
+        <h3 class="card-title">Trainees  Of @Current.Name Track </h3>
+
+
+        <table class="table">
+            <tr>
+
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>email</th>
+                <th>MobileNo</th>
+                <th>Birthdate</th>
+                <th>IsGraduated</th>
+
+
+            </tr>
+            @foreach (var trainee in Trainees)
+            {
+                <tr>
+                    <td>@trainee.ID</td>
+                    <td>@trainee.Name</td>
+                    <td>@trainee.Gender</td>
+                    <td>@trainee.email</td>
+                    <td>@trainee.MobileNo</td>
+                    <td>@trainee.Birthdate</td>
+                    <td>@trainee.IsGraduated</td>
+                </tr>
+            }
+
+        </table>
+    }
+
+}
+else
+{
+    <div>Track is Loading Please wait...</div>
+}

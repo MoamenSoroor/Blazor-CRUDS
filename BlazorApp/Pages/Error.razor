@@ -1,0 +1,8 @@
+﻿@page "/error/{Msg}"
+
+<h1>Error Page </h1>
+<p> Error Message: @Msg</p>
+@code
+{
+    public string Msg { get; set; } = "Error While Processing...";
+}

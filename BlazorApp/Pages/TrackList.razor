@@ -1,0 +1,46 @@
+﻿@page "/alltracks"
+
+
+@if (Tracks != null)
+{
+
+    <h3>Trainee List</h3>
+
+    <a href="@($"trackinsert/")" class="btn btn-primary"> Insert New Track </a>
+    <hr />
+    <table class="table table-responsive">
+        <tr>
+
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th></th>
+
+
+        </tr>
+        @foreach (var track in Tracks)
+        {
+            <tr>
+                <td>@track.ID</td>
+                <td>@track.Name</td>
+                <td>@track.Description</td>
+                <td>
+                    <a href="@($"trackdetails/{track.ID}")" class="btn btn-primary"> Details </a>
+                    <a href="@($"trackedit/{track.ID}")" class="btn btn-secondary"> Update </a>
+
+                    @if (track.Trainees == null || track.Trainees.Count == 0)
+                    {
+                        <a href="@($"trackdelete/{track.ID}")" class="btn btn-danger"> Delete </a>
+
+                    }
+                </td>
+
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <div>please be patient. Tracks are Loading... </div>
+}

@@ -1,0 +1,77 @@
+﻿@page "/traineeinsert"
+
+@inject NavigationManager navigator
+
+<h3 class="card-title">Trainee Insert </h3>
+
+@if (Current != null && Tracks != null)
+{
+    <EditForm Model="@Current" OnValidSubmit="@HandleValidSubmit"
+              OnInvalidSubmit="@HandleInvalidSubmit">
+
+        <DataAnnotationsValidator />
+
+        <ValidationSummary></ValidationSummary>
+
+        <div class="form-group row">
+            <label for="firstName" class="col-form-label">First name: </label>
+            <InputText id="firstName" class="form-control" @bind-Value="@Current.Name" placeholder="Enter first name"></InputText>
+            <ValidationMessage For="@(() => Current.Name)" />
+        </div>
+
+
+        <div class="form-group row">
+            <label for="birthdate" class="col-form-label">Birthdate: </label>
+            <InputDate id="birthdate" class="form-control" @bind-Value="@Current.Birthdate" placeholder="Enter birthdate"></InputDate>
+            <ValidationMessage For="@(() => Current.Birthdate)" />
+
+        </div>
+        <div class="form-group row">
+            <label for="email" class="col-form-label">Email: </label>
+            <InputText id="email" class="form-control" @bind-Value="@Current.email" placeholder="Enter email"></InputText>
+            <ValidationMessage For="@(() => Current.email)" />
+
+        </div>
+
+
+
+        <div class="form-group row">
+            <label for="phonenumber" class="col-form-label">Phone number: </label>
+            <InputText id="phonenumber" class="form-control" @bind-Value="@Current.MobileNo" placeholder="Enter phone number"></InputText>
+            <ValidationMessage For="@(() => Current.MobileNo)" />
+
+        </div>
+
+        <div class="form-group row">
+            <label for="gender" class="col-form-label">Gender: </label>
+            <InputSelect id="gender" class="form-control" @bind-Value=@Current.Gender>
+                <option value="@(Gender.Male)">Male</option>
+                <option value="@(Gender.Female)">Female</option>
+            </InputSelect>
+        </div>
+
+
+        <div class="form-group row">
+            <label for="track" class="col-form-label">Track: </label>
+            <InputSelect id="track" class="form-control" @bind-Value="@TrackId" @onchange="TrackChangeHandler">
+                @foreach (var track in Tracks)
+                    {
+                    <option value="@track.ID">@track.Name</option>
+                    }
+            </InputSelect>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Add Trainee</button>
+
+    </EditForm>
+
+}
+else
+{
+    <div>wait...</div>
+}
+
+
+
+

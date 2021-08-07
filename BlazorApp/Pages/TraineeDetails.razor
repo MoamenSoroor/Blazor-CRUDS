@@ -1,0 +1,64 @@
+﻿@page "/traineedetails/{TraineeId:int}"
+
+@inject NavigationManager navigator
+
+
+@if (Current != null)
+{
+
+    <h3 class="card-title">Trainee Details of @Current.Name </h3>
+
+
+
+    <div class=" row">
+        <label class="col-form-label"> Trainee Id </label>
+        <label class="form-control">@Current.ID</label>
+    </div>
+
+    <div class=" row">
+        <label class="col-form-label"> Name </label>
+        <label class="form-control">@Current.Name</label>
+    </div>
+
+
+    <div class=" row">
+        <label class="col-form-label"> Birthdate </label>
+        <label class="form-control"> @Current.Birthdate.ToShortDateString() </label>
+    </div>
+
+    <div class=" row">
+        <label class="col-form-label"> Email </label>
+        <label class="form-control"> @Current.email </label>
+    </div>
+
+    <div class=" row">
+        <label class="col-form-label"> Phone Number </label>
+        <label class="form-control"> @Current.MobileNo </label>
+    </div>
+
+    <div class=" row">
+        <label class="col-form-label"> Gender </label>
+        <label class="form-control"> @Current.Gender </label>
+    </div>
+
+    <div class=" row">
+        <label class="col-form-label"> IsGraduated </label>
+        <label class="form-control"> @Current.IsGraduated </label>
+    </div>
+    <div class=" row">
+        <label class="col-form-label"> Track Name </label>
+        <label class="form-control"> @Current.Track.Name </label>
+    </div>
+
+    <div>
+        <a href="@($"traineeedit/{Current.ID}")" class="btn btn-primary m-1"> Update </a> 
+        <a href="@($"traineedelete/{Current.ID}")" class="btn btn-danger m-1"> Delete </a> 
+        <a href="@($"alltrainees")" class="btn btn-primary m-1"> All Trainees </a> 
+
+    </div>
+
+}
+else
+{
+<div>Trainee is Loading Please wait...</div>
+}

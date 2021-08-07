@@ -1,0 +1,44 @@
+﻿@page "/trackdelete/{TrackId:int}"
+
+@inject NavigationManager navigator
+
+@if (Current != null)
+{
+    if (Current.Trainees != null && Current.Trainees.Count > 0)
+    {
+        <div class="row card">You Can't Delete the Current Trainee because he has a Trainees.</div>
+        <div class="row">
+            <a href="@($"alltracks/")" class="btn btn-primary"> Back To All Tracks </a>
+            <a href="@($"trackedit/{Current.ID}")" class="btn btn-secondary"> Update </a>
+        </div>
+
+    }
+    else
+    {
+        <h3 class="card-title">Details Of @Current.Name Track </h3>
+        <EditForm Model="@Current" OnValidSubmit="@HandleValidSubmit"
+                  OnInvalidSubmit="@HandleInvalidSubmit">
+            <div class="form-group row">
+                <label class="col-form-label"> Track Id </label>
+                <label class="form-control">@Current.ID</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label"> Name </label>
+                <label class="form-control">@Current.Name</label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-form-label"> Description </label>
+                <label class="form-control">@Current.Description</label>
+            </div>
+            <button type="submit" class="btn btn-danger">Delete Track</button>
+
+        </EditForm>
+    }
+
+}
+else
+{
+    <div>wait....</div>
+}
